@@ -2,7 +2,8 @@
 
 (function() {
   /*
-   * This directive
+   * This directive, helps you to disable all fields in a form easily.
+   *
    * @author Victor Queiroz <victorcqueirozg@gmail.com>
    * @license http://license.visualidiot.com
    */
