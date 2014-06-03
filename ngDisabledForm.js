@@ -30,23 +30,28 @@
    */
   var ngDisabledFormDirective = function() {
     return function (scope, element, attr) {
-      var el = element[0].querySelectorAll('input, select, button, textarea');
-
-      scope.$watch(attr.disableForm, function(value) {
-        var disableAllInputs = function(el)
+  
+      var enabledElements = element[0].querySelectorAll('input:not(:disabled):not([class*=ng-input-default-disabled]):not([ng-enabled]), select:not(:disabled):not([class*=ng-input-default-disabled]):not([ng-enabled]), textarea:not(:disabled):not([class*=ng-input-default-disabled]):not([ng-enabled]), button:not(:disabled):not([class*=ng-input-default-disabled]):not([ng-enabled])');
+      var disabledElements = element[0].querySelectorAll('input:disabled, select:disabled, button:disabled, textarea:disabled');
+  
+      scope.$watch(attr.ngDisabledForm, function(value) {
+        var disableAllInputs = function()
         {
-          angular.element(el).attr('disabled', '').addClass('disabled');
+          angular.element(disabledElements).addClass('ng-input-default-disabled');
+          angular.element(enabledElements).attr('disabled', '').addClass('disabled');
         };
-
-        var enableAllInputs = function(el)
-        {          
-          angular.element(el).removeAttr('disabled', '').removeClass('disabled');
+  
+        var enableAllInputs = function()
+        {
+          angular.element(enabledElements).removeAttr('disabled').removeClass('disabled');
+          angular.element(disabledElements).attr('disabled', '').addClass('disabled').removeClass('ng-input-default-disabled');
         };
-
-        toBoolean(value) ? disableAllInputs() : enableAllInputs();
+  
+        toBoolean(value) ? disableAllInputs(element) : enableAllInputs(element);
       });
+  
     };
-  };
+  }
 
   /*
    *
