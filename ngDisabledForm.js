@@ -35,14 +35,12 @@
       var disabledElements = element[0].querySelectorAll('input:disabled, select:disabled, button:disabled, textarea:disabled');
   
       scope.$watch(attr.ngDisabledForm, function(value) {
-        var disableAllInputs = function()
-        {
+        var disableAllInputs = function() {
           angular.element(disabledElements).addClass('ng-input-default-disabled');
           angular.element(enabledElements).attr('disabled', '').addClass('disabled');
         };
   
-        var enableAllInputs = function()
-        {
+        var enableAllInputs = function() {
           angular.element(enabledElements).removeAttr('disabled').removeClass('disabled');
           angular.element(disabledElements).attr('disabled', '').addClass('disabled').removeClass('ng-input-default-disabled');
         };
