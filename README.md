@@ -13,7 +13,7 @@ Disable all inputs, selects, buttons and textareas on a form.
 
 It is quite simple! Look:
 ```
-  <form ng-disabled-form="disable">
+  <form ng-disabled-form="true">
     <input type="text" value="">
   </form>
 ```
