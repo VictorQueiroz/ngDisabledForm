@@ -17,3 +17,11 @@ It is quite simple! Look:
     <input type="text" value="">
   </form>
 ```
+
+And if you want to keep a single input by default disabled, you should add ```ng-input-default-disabled``` class to the element, and ```ng-enabled``` attribute if you want to make the input enabled forever no matter what. Just like this:
+```
+  <form ng-disabled-form="true">
+    <input type="text" value="" class="ng-input-default-disabled">
+    <input type="email" value="" ng-enabled>
+  </form>
+```
